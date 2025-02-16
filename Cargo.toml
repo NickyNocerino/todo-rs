@@ -7,3 +7,9 @@ edition = "2021"
 name = "todo_rs"
 
 [dependencies]
+
+[dependencies.uuid]
+version = "1.13.1"
+features = [
+    "v4",                # Lets you generate random UUIDs
+]
