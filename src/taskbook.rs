@@ -18,4 +18,17 @@ impl TaskBook {
             one_offs: one_offs_log,
         }
     }
+
+    pub fn add_task(self, ){
+        //TODO
+    }
+    pub fn add_recurring_task(self, ){
+        //TODO
+    }
+    pub fn get_tasks_between(&self, start_time: f64, end_time: f64) -> Vec<Task> {
+        let out = Vec::<Task>::new();
+        //TODO
+        // add a task for each one off and each instance of the recurring task in the give time window
+        out
+    }
 }

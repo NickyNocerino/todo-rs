@@ -34,8 +34,9 @@ impl RecurringTask {
         }
     }
 
-    pub fn instances_between(&self, start_time: f64, end_time: f64) -> Vec<Task> {
+    pub fn get_tasks_between(&self, start_time: f64, end_time: f64) -> Vec<Task> {
         let out = Vec::<Task>::new();
+        //TODO
         // add a task for each instance of the recurring task in the give time window
         out
     }
