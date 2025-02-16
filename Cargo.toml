@@ -1,6 +1,9 @@
 [package]
-name = "todo-rs"
+name = "todo_rs"
 version = "0.1.0"
 edition = "2021"
+
+[lib]
+name = "todo_rs"
 
 [dependencies]
