@@ -1,8 +1,8 @@
-use todo_rs::task::Task;
+use crate::task::Task;
 
 use std::time::{SystemTime, UNIX_EPOCH};
 
-enum Frequency{
+pub enum Frequency{
     Daily,
     Weekly,
     Monthly,
@@ -35,7 +35,7 @@ impl RecurringTask {
     }
 
     pub fn instances_between(&self, start_time: f64, end_time: f64) -> Vec<Task> {
-        let out = Vec<Task>::new();
+        let out = Vec::<Task>::new();
         // add a task for each instance of the recurring task in the give time window
         out
     }
