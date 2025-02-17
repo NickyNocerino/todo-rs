@@ -42,6 +42,18 @@ impl Task {
             complete: false
         }
     }
+
+    pub fn is_between(&self, start_time: f64, end_time: f64) -> bool {
+        if {
+            self.due > start_time
+            &&
+            self.due < end_time
+        }
+        {
+            true
+        }
+        false
+    }
 }
 
 

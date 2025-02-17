@@ -1,12 +1,10 @@
 use crate::task::Task;
 
-use std::time::{SystemTime, UNIX_EPOCH};
+use std::time::{SystemTime, Duration, UNIX_EPOCH};
 
 pub enum Frequency{
     Daily,
     Weekly,
-    Monthly,
-    Yearly,
 }
 
 pub struct RecurringTask {
@@ -35,9 +33,37 @@ impl RecurringTask {
     }
 
     pub fn get_tasks_between(&self, start_time: f64, end_time: f64) -> Vec<Task> {
-        let out = Vec::<Task>::new();
-        //TODO
-        // add a task for each instance of the recurring task in the give time window
+        let mut out = Vec::<Task>::new();
+        let mut instance = UNIX_EPOCH + Duration::from_secs_f64(self.first_due);
+        while {
+            instance
+            .duration_since(UNIX_EPOCH)
+            .expect("Time went backwards")
+            .as_secs_f64() < end_time
+        }
+            {
+            if {
+                instance
+                .duration_since(UNIX_EPOCH)
+                .expect("Time went backwards")
+                .as_secs_f64() > start_time
+            } {
+                out.push(Task::new_backdated_entry(
+                    self.created,
+                    instance.duration_since(UNIX_EPOCH).expect("Time went backwards").as_secs_f64(),
+                    self.title.clone(),
+                    self.description.clone()
+                ))
+            }
+            match self.frequency {
+                Frequency::Daily => {
+                    instance = instance +  Duration::from_secs(86400);
+                }, 
+                Frequency::Weekly => {
+                    instance = instance +  Duration::from_secs(7*86400);
+                }
+            }
+        }
         out
     }
 }
